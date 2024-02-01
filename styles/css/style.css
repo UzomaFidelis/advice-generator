@@ -1,0 +1,129 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: Manrope;
+  src: url(../../font/Manrope-ExtraBold.ttf);
+  font-weight: 800;
+}
+body {
+  margin: 0;
+  background-color: hsl(218, 23%, 16%);
+  font-family: Manrope, sans-serif;
+  font-weight: 800;
+}
+
+.sr-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.advice {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  position: relative;
+}
+.advice__container {
+  background-color: hsl(217, 19%, 24%);
+  width: 21.5rem;
+  text-align: center;
+  padding: 1.8rem 1.5rem 2.5rem;
+  border-radius: 10px;
+  position: relative;
+  top: -16px;
+}
+.advice__label {
+  text-transform: uppercase;
+  font-size: 0.71rem;
+  color: hsl(150, 100%, 66%);
+  letter-spacing: 0.2rem;
+}
+.advice__text {
+  color: hsl(193, 38%, 86%);
+  font-size: 1.466rem;
+  line-height: 2.1rem;
+}
+.advice__text::after {
+  display: block;
+  content: "";
+  background-image: url(../../images/pattern-divider-mobile.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 1rem;
+  width: 100%;
+  margin-top: 1.4rem;
+}
+.advice__button {
+  border: none;
+  outline: none;
+  padding: 1rem;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 4rem;
+  height: 4rem;
+  background-color: hsl(150, 100%, 66%);
+  line-height: 0;
+  cursor: pointer;
+}
+.advice__button:hover {
+  box-shadow: 0 0 20px 5px rgba(82, 255, 168, 0.5);
+}
+.advice__button:disabled:hover {
+  box-shadow: none;
+}
+
+.button__img {
+  pointer-events: none;
+  width: 100%;
+}
+
+.feedback {
+  position: absolute;
+  bottom: -50px;
+  left: 10px;
+  background-color: rgba(220, 20, 60, 0.8);
+  padding: 0.5rem;
+  border: 1px solid hsl(193, 38%, 86%);
+  color: rgba(0, 0, 0, 0.7);
+  transition: bottom 0.4s;
+}
+.feedback__text {
+  margin: 0;
+}
+
+@media (min-width: 1200px) {
+  .advice__container {
+    width: 33.8rem;
+    padding: 2.16rem 2.5rem 3rem;
+    border-radius: 13px;
+  }
+  .advice__label {
+    font-size: 0.84rem;
+    letter-spacing: 0.237rem;
+  }
+  .advice__text {
+    font-size: 1.715rem;
+    line-height: 2.4rem;
+    margin: 1.5rem 0;
+  }
+  .advice__text::after {
+    background-image: url(../../images/pattern-divider-desktop.svg);
+    margin-top: 2.42rem;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
