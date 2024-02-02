@@ -33,7 +33,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   position: relative;
   margin: 20px;
  
@@ -145,7 +144,6 @@ body {
 @media (min-width: 500px){
 
   .advice {
-    height: initial;
     min-height: 100vh;
   }
   
