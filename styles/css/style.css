@@ -29,8 +29,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
   position: relative;
+  height: 100vh;
+  margin: 20px;
 }
 .advice__container {
   background-color: hsl(217, 19%, 24%);
@@ -124,6 +125,12 @@ body {
   margin: 0;
 }
 
+@media (min-width: 500px) {
+  .advice {
+    height: initial;
+    min-height: 100vh;
+  }
+}
 @media (min-width: 1200px) {
   .advice__container {
     width: 33.8rem;

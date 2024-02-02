@@ -34,6 +34,7 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
+  height: 100vh;
   margin: 20px;
  
 
@@ -144,6 +145,7 @@ body {
 @media (min-width: 500px){
 
   .advice {
+    height: initial;
     min-height: 100vh;
   }
   
