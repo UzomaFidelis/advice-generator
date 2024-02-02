@@ -1,5 +1,5 @@
 @use "variables" as vars;
-@use "mixins";
+
 
 *,
 *::before,
@@ -35,7 +35,7 @@ body {
   align-items: center;
   min-height: 100vh;
   position: relative;
-  // margin-top: 120px;
+ 
 
   &__container {
     background-color: vars.$dark-grayish-blue;
@@ -87,11 +87,11 @@ body {
     background-color: vars.$neon-green;
     line-height: 0;
     cursor: pointer;
-  
-   &:hover {
-    box-shadow: 0 0 20px 5px rgba(vars.$neon-green, 0.5);
-   } 
-     
+
+    &:hover {
+      box-shadow: 0 0 20px 5px rgba(vars.$neon-green, 0.5);
+    }
+
     &:disabled:hover {
       box-shadow: none;
     }
@@ -99,6 +99,7 @@ body {
 }
 
 .button {
+
   &__img {
     pointer-events: none;
     width: 100%;
@@ -107,14 +108,20 @@ body {
 
 .feedback {
   position: absolute;
-  bottom: -50px;
-  left: 10px;
+  top: -100px;
+  opacity: 0;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  max-height: fit-content;
+  width: fit-content;
   background-color: rgba(crimson, 0.8);
   padding: 0.5rem;
   border: 1px solid vars.$light-cyan;
   color: rgba(black, 0.7);
-  transition: bottom 0.4s;
-  
+  transition: top 0.4s, opacity 0.6s;
+
   &__text {
     margin: 0;
   }

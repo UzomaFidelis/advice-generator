@@ -1,31 +1,29 @@
 const generateBtn = document.querySelector(".advice__button");
 const adviceText = document.querySelector(".advice__text");
 const adviceId = document.querySelector(".advice__id");
+const feedback = document.querySelector(".feedback");
 
 const apiUrl = "https://api.adviceslip.com/advice";
 
-function getAdvice() {
-  fetch(apiUrl, {method: "GET" })
+async function getAdvice() {
+  try {
+    const response = await fetch(apiUrl, { method: "GET" });
+    const data = await response.json();
 
-    .then((response) => {
-      if (response.ok) {
-        console.log("Fetch OK");
-        return response.json();
-      } else {
-        console.log("Fetch Failed");
-        throw new Error("An Error occured");
-      }
-    })
-
-    .then((data) => {
-      console.log(data.slip);
-      adviceText.textContent = data.slip.advice;
-      adviceId.textContent = data.slip.id;
-    })
-
-    .catch((error) => {
-      console.error(error);
-    });
+    if (data) {
+      const advice = data.slip;
+      adviceText.textContent = advice.advice;
+      adviceId.textContent = advice.id;
+    }
+  } catch (error) {
+    feedback.textContent = "Network Error. Try again";
+    feedback.style.top = "10px";
+    feedback.style.opacity = "1";
+    setTimeout(() => {
+      feedback.style.top = "-100px";
+      feedback.style.opacity = "0";
+    }, 2000);
+  }
 }
 
 generateBtn.addEventListener("click", (e) => {
@@ -34,7 +32,7 @@ generateBtn.addEventListener("click", (e) => {
   e.target.disabled = true;
 
   getAdvice();
-  
+
   setTimeout(() => {
     buttonImg.src = "./images/icon-dice.svg";
     e.target.disabled = false;
