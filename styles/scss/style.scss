@@ -32,12 +32,9 @@ body {
 .advice {
   display: flex;
   justify-content: center;
-  align-items: center;
   position: relative;
-  height: 100vh;
-  margin: 20px;
- 
 
+ 
   &__container {
     background-color: vars.$dark-grayish-blue;
     width: 21.5rem;
@@ -45,7 +42,8 @@ body {
     padding: 1.8rem 1.5rem 2.5rem;
     border-radius: 10px;
     position: relative;
-    top: -16px;
+    top: -16px;  
+    margin: 120px 10px;
   }
 
   &__label {
@@ -145,8 +143,12 @@ body {
 @media (min-width: 500px){
 
   .advice {
-    height: initial;
+    align-items: center;
     min-height: 100vh;
+
+    &__container {
+      margin: 20px;
+    }
   }
   
 }

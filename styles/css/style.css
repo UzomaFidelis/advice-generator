@@ -28,10 +28,7 @@ body {
 .advice {
   display: flex;
   justify-content: center;
-  align-items: center;
   position: relative;
-  height: 100vh;
-  margin: 20px;
 }
 .advice__container {
   background-color: hsl(217, 19%, 24%);
@@ -41,6 +38,7 @@ body {
   border-radius: 10px;
   position: relative;
   top: -16px;
+  margin: 120px 10px;
 }
 .advice__label {
   text-transform: uppercase;
@@ -127,8 +125,11 @@ body {
 
 @media (min-width: 500px) {
   .advice {
-    height: initial;
+    align-items: center;
     min-height: 100vh;
+  }
+  .advice__container {
+    margin: 20px;
   }
 }
 @media (min-width: 1200px) {
