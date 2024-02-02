@@ -35,15 +35,18 @@ generateBtn.addEventListener("click", (e) => {
   console.log(e.target.children);
 
   buttonImg.style.opacity = "0";
+  buttonImg.setAttribute("aria-hidden", "true");
   loaderImg.style.opacity = "1";
-
+  loaderImg.setAttribute("aria-hidden", "false");
   e.target.disabled = true;
 
   getAdvice();
 
   setTimeout(() => {
     buttonImg.style.opacity = "1";
+    buttonImg.setAttribute("aria-hidden", "false");
     loaderImg.style.opacity = "0";
+    loaderImg.setAttribute("aria-hidden", "true");
     e.target.disabled = false;
   }, 1500);
 });
