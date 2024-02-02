@@ -16,28 +16,34 @@ async function getAdvice() {
       adviceId.textContent = advice.id;
     }
   } catch (error) {
-    feedback.textContent = "Network Error. Try again";
-    feedback.setAttribute('aria-hidden', 'false');
+    feedback.setAttribute("aria-hidden", "false");
     feedback.style.top = "10px";
     feedback.style.opacity = "1";
-    
+
     setTimeout(() => {
       feedback.style.top = "-100px";
       feedback.style.opacity = "0";
-      feedback.setAttribute('aria-hidden', 'true');
+      feedback.setAttribute("aria-hidden", "true");
     }, 2000);
   }
 }
 
 generateBtn.addEventListener("click", (e) => {
-  const buttonImg = e.target.children[0];
-  buttonImg.src = "./images/double-ring-spinner.svg";
+  const buttonImg = e.target.children[1];
+  const loaderImg = e.target.children[2];
+
+  console.log(e.target.children);
+
+  buttonImg.style.opacity = "0";
+  loaderImg.style.opacity = "1";
+
   e.target.disabled = true;
 
   getAdvice();
 
   setTimeout(() => {
-    buttonImg.src = "./images/icon-dice.svg";
+    buttonImg.style.opacity = "1";
+    loaderImg.style.opacity = "0";
     e.target.disabled = false;
   }, 1500);
 });

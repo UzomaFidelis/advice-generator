@@ -74,7 +74,7 @@ body {
   &__button {
     border: none;
     outline: none;
-    padding: 1rem;
+    padding: 1.2rem;
     border-radius: 50%;
     position: absolute;
     left: 0;
@@ -103,6 +103,20 @@ body {
   &__img {
     pointer-events: none;
     width: 100%;
+    opacity: 1;
+  }
+
+  &__loader {
+    pointer-events: none;
+    position: absolute;
+    width: 80%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    border-radius: 50%;
+    opacity: 0;
   }
 }
 
