@@ -17,11 +17,14 @@ async function getAdvice() {
     }
   } catch (error) {
     feedback.textContent = "Network Error. Try again";
+    feedback.setAttribute('aria-hidden', 'false');
     feedback.style.top = "10px";
     feedback.style.opacity = "1";
+    
     setTimeout(() => {
       feedback.style.top = "-100px";
       feedback.style.opacity = "0";
+      feedback.setAttribute('aria-hidden', 'true');
     }, 2000);
   }
 }
