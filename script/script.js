@@ -5,17 +5,43 @@ const feedback = document.querySelector(".feedback");
 
 const apiUrl = "https://api.adviceslip.com/advice";
 
-async function getAdvice() {
-  try {
-    const response = await fetch(apiUrl, { method: "GET" });
-    const data = await response.json();
 
+async function retryGetAdvice(retries = 3, retryDelay = 2, err = null){
+  if (!retries) {
+    return Promise.reject(err);
+  }
+
+  return fetch(apiUrl, {method: "GET"}).catch(async (error) => {
+    if (retryDelay) {
+      await new Promise((resolve) => setTimeout(resolve, retryDelay * 1000));
+    }
+
+    return retryGetAdvice(retries - 1, retryDelay, error);
+  });
+}
+
+generateBtn.addEventListener("click", async (e) => {
+  const buttonImg = e.target.children[1];
+  const loaderImg = e.target.children[2];
+
+  // Show button loader svg
+  buttonImg.style.opacity = "0";
+  buttonImg.setAttribute("aria-hidden", "true");
+  loaderImg.style.opacity = "1";
+  loaderImg.setAttribute("aria-hidden", "false");
+  e.target.disabled = true;
+
+  try {
+    const response = await retryGetAdvice();
+    const data = await response.json();
+    
     if (data) {
       const advice = data.slip;
       adviceText.textContent = advice.advice;
       adviceId.textContent = advice.id;
     }
-  } catch (error) {
+
+  }catch(error) {
     feedback.setAttribute("aria-hidden", "false");
     feedback.style.top = "10px";
     feedback.style.opacity = "1";
@@ -25,28 +51,12 @@ async function getAdvice() {
       feedback.style.opacity = "0";
       feedback.setAttribute("aria-hidden", "true");
     }, 2000);
-  }
-}
-
-generateBtn.addEventListener("click", (e) => {
-  const buttonImg = e.target.children[1];
-  const loaderImg = e.target.children[2];
-
-  console.log(e.target.children);
-
-  buttonImg.style.opacity = "0";
-  buttonImg.setAttribute("aria-hidden", "true");
-  loaderImg.style.opacity = "1";
-  loaderImg.setAttribute("aria-hidden", "false");
-  e.target.disabled = true;
-
-  getAdvice();
-
-  setTimeout(() => {
+  } finally {
+    // Remove button loader svg
     buttonImg.style.opacity = "1";
     buttonImg.setAttribute("aria-hidden", "false");
     loaderImg.style.opacity = "0";
     loaderImg.setAttribute("aria-hidden", "true");
     e.target.disabled = false;
-  }, 1500);
+  }
 });
